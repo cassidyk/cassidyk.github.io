@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1400581206013">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1400581973723">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -202,7 +202,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_3">
+                    <section class="normal" id="section-gitbook_4">
                     
                         <h1 id="images">Images</h1>
 <h2 id="ica-2">ICA 2</h2>
@@ -218,7 +218,7 @@
 <tbody>
 <tr>
 <td>Mount</td>
-<td><code>mount /dev/sda8 /mnt</code></td>
+<td><code>mount /dev/sd$X$Y /mnt</code></td>
 </tr>
 <tr>
 <td>List filesystem</td>
@@ -244,10 +244,16 @@
 <td>destination=&#39;/mnt/partition_table.img&#39;</td>
 </tr>
 <tr>
-<td>count=`parted -ms /dev/sda print &#124; tail -n 1 &#124; cut -d&#39;:&#39; -f1`</td>
+<td>count=`parted -ms $source print &#124; tail -n 1 &#124; cut -d&#39;:&#39; -f1`</td>
 </tr>
 <tr>
-<td>formula=$((1024 + (128 * $count)))</td>
+<td>name=$(echo $source &#124; cut -c 6-9)</td>
+</tr>
+<tr>
+<td>space=$(lsblk &#124; grep &quot;$name&quot; &#124; head -n 1 &#124; tr -s &#39; &#39; &#124; cut -d &#39; &#39; -f4 &#124; head -c -2)</td>
+</tr>
+<tr>
+<td>formula=$((1024 + ($space * $count)))</td>
 </tr>
 </tbody>
 </table>
