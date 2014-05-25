@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="1" data-basepath="." data-revision="1401008408499">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="1" data-basepath="." data-revision="1401011107127">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -258,6 +258,15 @@
 <td>partition=1</td>
 </tr>
 <tr>
+<td>boot_start=&quot;sgdisk $device --first-aligned-in-largest&quot;</td>
+</tr>
+<tr>
+<td>boot_end=&quot;sgdisk $device --end-of-largest&quot;</td>
+</tr>
+<tr>
+<td>bios_type=&#39;EF02&#39;</td>
+</tr>
+<tr>
 <td>name=$(echo $device &#124; cut -c 6-9)</td>
 </tr>
 <tr>
@@ -269,18 +278,12 @@
 <tr>
 <td>mkfs=&quot;mkfs.$filesystem $device$partition&quot;</td>
 </tr>
-<tr>
-<td>start=&quot;sgdisk $device --first-aligned-in-largest&quot;</td>
-</tr>
-<tr>
-<td>boot=&quot;sgdisk $device --end-of-largest&quot;</td>
-</tr>
-<tr>
-<td>bios=&#39;EF02&#39;</td>
-</tr>
 </tbody>
 </table>
 <pre><code>#!/bin/bash
+
+# zero out the drive for better compression of images
+dd if=/dev/zero of=$device bs=1024 conv=noerror,sync
 
 for (( ; partition&lt;$max; partition++ ))
 do
@@ -290,7 +293,7 @@ done
 sgdisk $device --largest-new=$partition
 eval $mkfs
 (( partition++ ))
-sgdisk $device --new=$partition:`eval $start`:`eval $boot` --typecode=partnum:$bios
+sgdisk $device --new=$partition:`eval $boot_start`:`eval $boot_end` --typecode=partnum:$bios_type
 </code></pre><h4 id="note">Note</h4>
 <p>To clear the partition table</p>
 <pre><code>sgdisk $device --clear

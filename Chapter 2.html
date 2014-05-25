@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401008408499">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401011107127">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -241,12 +241,13 @@
 <td>source=&quot;/dev/sd$X&quot;</td>
 </tr>
 <tr>
+<td>layout=&#39;/mnt/partition_layout.bak&#39;</td>
+</tr>
+<tr>
 <td>destination=&#39;/mnt/partition_table.img&#39;</td>
 </tr>
 <tr>
-<td>count=`parted -ms /dev/sda print</td>
-<td>tail -n+3</td>
-<td>grep . -c`</td>
+<td>count=<code>parted -ms $source print &amp;#124; tail -n+3 &amp;#124; grep . -c</code></td>
 </tr>
 <tr>
 <td>name=$(echo $source &#124; cut -c 6-9)</td>
@@ -260,6 +261,9 @@
 </tbody>
 </table>
 <pre><code>#!/bin/bash
+
+# copy the partition layout
+parted -ms /dev/sda print &gt; $layout
 
 # pulling the partition table
 pv -tpreb $source | dd of=$destination bs=1 count=$formula
@@ -281,13 +285,13 @@ pv -tpreb $destination | dd of=$source bs=1 count=$formula
 <td>source=&quot;/dev/sd$X&quot;</td>
 </tr>
 <tr>
-<td>destination=&#39;/mnt/file.img&#39;</td>
+<td>destination=&#39;/mnt/file.img.gz&#39;</td>
 </tr>
 </tbody>
 </table>
 <pre><code>#!/bin/bash
 
-pv -tpreb $source | dd of=$destination
+dd if=$source bs=1024 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $destination
 </code></pre><h4 id="pushing-an-image">Pushing an image</h4>
 <table>
 <thead>
@@ -300,19 +304,19 @@ pv -tpreb $source | dd of=$destination
 <td>X=&#39;a&#39;</td>
 </tr>
 <tr>
-<td>source=&#39;/mnt/file.img&#39;</td>
+<td>source=&#39;/mnt/file.img.gz&#39;</td>
 </tr>
 <tr>
 <td>destination=&quot;/dev/sd$X&quot;</td>
 </tr>
 <tr>
-<td>count=`parted -ms /dev/sda print &#124; tail -n 1 &#124; cut -d&#39;:&#39; -f1`</td>
+<td>count=<code>parted -ms $source print &amp;#124; tail -n+3 &amp;#124; grep . -c</code></td>
 </tr>
 </tbody>
 </table>
 <pre><code>#!/bin/bash
 
-pv -tpreb $source | dd of=$destination bs=4096 conv=notrunc,noerror,sync
+gunzip -c $source | pv | dd of=$destination bs=1024 conv=noerror,sync
 
 # randomize guids for each partition
 sgdisk $destination --randomize-guids
