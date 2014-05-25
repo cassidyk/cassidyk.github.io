@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401006606933">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401008408499">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -218,7 +218,7 @@
 <tbody>
 <tr>
 <td>Mount</td>
-<td><code>mount /dev/sd$X$Y /mnt</code></td>
+<td><code>mount /dev/sdb1 /mnt</code> # partition &amp; mkfs.ext4 /dev/sdb1 if needed</td>
 </tr>
 <tr>
 <td>List filesystem</td>
@@ -244,7 +244,9 @@
 <td>destination=&#39;/mnt/partition_table.img&#39;</td>
 </tr>
 <tr>
-<td>count=`parted -ms $source print &#124; tail -n 1 &#124; cut -d&#39;:&#39; -f1`</td>
+<td>count=`parted -ms /dev/sda print</td>
+<td>tail -n+3</td>
+<td>grep . -c`</td>
 </tr>
 <tr>
 <td>name=$(echo $source &#124; cut -c 6-9)</td>

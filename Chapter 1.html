@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="1" data-basepath="." data-revision="1401006606933">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="1" data-basepath="." data-revision="1401008408499">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -275,6 +275,9 @@
 <tr>
 <td>boot=&quot;sgdisk $device --end-of-largest&quot;</td>
 </tr>
+<tr>
+<td>bios=&#39;EF02&#39;</td>
+</tr>
 </tbody>
 </table>
 <pre><code>#!/bin/bash
@@ -287,7 +290,7 @@ done
 sgdisk $device --largest-new=$partition
 eval $mkfs
 (( partition++ ))
-sgdisk $device --new=9:`eval $start`:`eval $boot` --typecode=partnum:EF02
+sgdisk $device --new=$partition:`eval $start`:`eval $boot` --typecode=partnum:$bios
 </code></pre><h4 id="note">Note</h4>
 <p>To clear the partition table</p>
 <pre><code>sgdisk $device --clear
