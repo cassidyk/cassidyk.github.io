@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401011107127">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401049065265">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -247,7 +247,7 @@
 <td>destination=&#39;/mnt/partition_table.img&#39;</td>
 </tr>
 <tr>
-<td>count=<code>parted -ms $source print &amp;#124; tail -n+3 &amp;#124; grep . -c</code></td>
+<td>count=$(parted -ms $source print &#124; tail -n+3 &#124; grep . -c)</td>
 </tr>
 <tr>
 <td>name=$(echo $source &#124; cut -c 6-9)</td>
@@ -310,7 +310,7 @@ dd if=$source bs=1024 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $destinat
 <td>destination=&quot;/dev/sd$X&quot;</td>
 </tr>
 <tr>
-<td>count=<code>parted -ms $source print &amp;#124; tail -n+3 &amp;#124; grep . -c</code></td>
+<td>count=&quot;parted -ms $destination print &#124; tail -n+3 &#124; grep . -c&quot;</td>
 </tr>
 </tbody>
 </table>
@@ -318,6 +318,7 @@ dd if=$source bs=1024 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $destinat
 
 gunzip -c $source | pv | dd of=$destination bs=1024 conv=noerror,sync
 
+count=`eval $count`
 # randomize guids for each partition
 sgdisk $destination --randomize-guids
 for (( partition=1; partition&lt;=$count; partition++ ))
