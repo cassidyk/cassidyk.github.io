@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401049065265">
+    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="2" data-basepath="." data-revision="1401075557803">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -270,7 +270,7 @@ pv -tpreb $source | dd of=$destination bs=1 count=$formula
 
 # a push would therefore be
 pv -tpreb $destination | dd of=$source bs=1 count=$formula
-</code></pre><h4 id="pulling-an-image">Pulling an image</h4>
+</code></pre><h4 id="the-image-file">The image file</h4>
 <table>
 <thead>
 <tr>
@@ -282,49 +282,36 @@ pv -tpreb $destination | dd of=$source bs=1 count=$formula
 <td>X=&#39;a&#39;</td>
 </tr>
 <tr>
-<td>source=&quot;/dev/sd$X&quot;</td>
+<td>device=&quot;/dev/sd$X&quot;</td>
 </tr>
 <tr>
-<td>destination=&#39;/mnt/file.img.gz&#39;</td>
+<td>file=&#39;/mnt/file.img.gz&#39;</td>
+</tr>
+<tr>
+<td>count=&quot;parted -ms $device print &#124; tail -n+3 &#124; grep . -c&quot;</td>
 </tr>
 </tbody>
 </table>
 <pre><code>#!/bin/bash
 
-dd if=$source bs=1024 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $destination
-</code></pre><h4 id="pushing-an-image">Pushing an image</h4>
-<table>
-<thead>
-<tr>
-<th>Shell Variables</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>X=&#39;a&#39;</td>
-</tr>
-<tr>
-<td>source=&#39;/mnt/file.img.gz&#39;</td>
-</tr>
-<tr>
-<td>destination=&quot;/dev/sd$X&quot;</td>
-</tr>
-<tr>
-<td>count=&quot;parted -ms $destination print &#124; tail -n+3 &#124; grep . -c&quot;</td>
-</tr>
-</tbody>
-</table>
-<pre><code>#!/bin/bash
+# pulling the image
+dd if=$device bs=1024 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $file
 
-gunzip -c $source | pv | dd of=$destination bs=1024 conv=noerror,sync
+# pushing the image
+gunzip -c $file | pv | dd of=$device bs=1024 conv=noerror,sync
 
+
+# correct duplicate GUIDs
 count=`eval $count`
-# randomize guids for each partition
 sgdisk $destination --randomize-guids
 for (( partition=1; partition&lt;=$count; partition++ ))
 do
     tune2fs $destination$partition -U random
 done
+
+# mount boot partition
+    # overwrite fstab
+    genfstab -U -p /mnt &gt; /mnt/etc/fstab
 </code></pre><h3 id="challanges">Challanges</h3>
 <ul>
 <li><a href="https://wiki.archlinux.org/index.php/Beginners%27_guide" target="_blank"> Install Arch to /dev/sda1 </a></li>
