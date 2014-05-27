@@ -3,14 +3,12 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introduction | Images</title>
+        <title>Introduction | Version 0.1</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="">
-        <meta name="description" content="(source /dev/sdX)
-(destination /mnt)
-```pv -tpreb /dev/sdX | dd of=/mnt/file.img```">
+        <meta name="description" content="This book is structured as a series of assignments which will guide exploritory system building. This will be accomplished by first creating an enviroment in which to build and then outling the use of a few building blocks.">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
@@ -19,8 +17,8 @@
         
         
 
-        <meta property="og:title" content="Introduction | Images">
-        <meta property="og:site_name" content="Images">
+        <meta property="og:title" content="Introduction | Version 0.1">
+        <meta property="og:site_name" content="Version 0.1">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
 
@@ -42,9 +40,11 @@
 
 
         
-    <div class="book"  data-level="0" data-basepath="." data-revision="1400041836660">
+    <div class="book"  data-level="0" data-basepath="." data-revision="1401084237902">
     <div class="book-header">
     <!-- Actions Left -->
+    
+    <a href="https://github.com/null" target="_blank" class="btn pull-left"><i class="fa fa-bookmark-o"></i></a>
     
     <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
@@ -77,16 +77,22 @@
     </span>
 
     <!-- Actions Right -->
+    
     <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    
+    
     <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    
+    
     <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+    
 
     
 
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="./" >Images</a>
+        <a href="./" >Version 0.1</a>
     </h1>
 </div>
 
@@ -96,6 +102,21 @@
     </div>
     <ul class="summary">
         
+
+        
+        <li>
+            <a href="https://github.com/null/issues" target="blank">Questions and Issues</a>
+        </li>
+        
+
+        
+        <li>
+            <a href="https://github.com/null/edit/master/README.md" target="blank">Edit and Contribute</a>
+        </li>
+        
+
+        
+
         <li data-level="0" data-path="index.html">
             <a href="./"><i class="fa fa-check"></i> Introduction</a>
         </li>
@@ -108,6 +129,40 @@
                 
                 
             </li>
+        
+            <li  data-level="2" data-path="Chapter 2.html">
+                
+                <a href="./Chapter 2.html">
+                    <i class="fa fa-check"></i> <b>2.</b> Chapter 2
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="3" data-path="Chapter 3.html">
+                
+                <a href="./Chapter 3.html">
+                    <i class="fa fa-check"></i> <b>3.</b> Chapter 3
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="Arch Install Script.html">
+                
+                <a href="./Arch Install Script.html">
+                    <i class="fa fa-check"></i> <b>4.</b> Script: Arch Install
+                </a>
+                
+                
+            </li>
+        
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank">Generated using GitBook</a>
+        </li>
         
     </ul>
 </div>
@@ -123,57 +178,50 @@
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./Chapter 1.html" title="Chapter 1" class="chapter  new-chapter" data-progress="1" style="left: 100%;"></a>
+        <a href="./Chapter 1.html" title="Chapter 1" class="chapter  new-chapter" data-progress="1" style="left: 25%;"></a>
+    
+        <a href="./Chapter 2.html" title="Chapter 2" class="chapter  new-chapter" data-progress="2" style="left: 50%;"></a>
+    
+        <a href="./Chapter 3.html" title="Chapter 3" class="chapter  new-chapter" data-progress="3" style="left: 75%;"></a>
+    
+        <a href="./Arch Install Script.html" title="Script: Arch Install" class="chapter  new-chapter" data-progress="4" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1558">
+                    <section class="normal" id="section-gitbook_2427">
                     
-                        <h1 id="images">Images</h1>
-<h2 id="ica-1">ICA 1</h2>
-<h3 id="build-your-work-enviroment">Build your work enviroment</h3>
-<h4 id="archlinux">Archlinux</h4>
+                        <h1 id="version-0-1">Version 0.1</h1>
+<p>This book is structured as a series of assignments which will guide exploritory system building. This will be accomplished by first creating an enviroment in which to build and then outling the use of a few building blocks.</p>
+<p>An assignment may end with some exercises to complete which will extend your toolkit for building new systems. Exercises should be completed in similar form as assignments for easy import into scripts. Any manual tasks should be clearly marked for future iterations.</p>
+<p>Assignments are written for BASH running within an Archlinux LiveCD.</p>
+<h4 id="assignment-format">Assignment Format</h4>
 <table>
 <thead>
 <tr>
-<th>Build</th>
-<th><a href="http://mirror.its.dal.ca/archlinux/iso/2014.05.01/" target="_blank"> a VM with two 128 GB hard drives </a></th>
+<th>BASH Code</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Configuration</td>
-<td><a href="https://www.digitalocean.com/community/articles/how-to-use-yaourt-to-easily-download-arch-linux-community-packages#Method_1:_Install_via_Custom_Repository" target="_blank"> yaourt </a>, <a href="https://wiki.archlinux.org/index.php/Ssh" target="_blank"> ssh </a>, <a href="https://wiki.archlinux.org/index.php/Pacman#Installing_packages" target="_blank"> pv, </a> # packages to install</td>
+<td>This table includes variable code. It is to be copied into your script and modified as needed</td>
 </tr>
 </tbody>
 </table>
-<h4 id="partitions">Partitions</h4>
-<pre><code>sgdisk /dev/sda --new=1:2048:16G --typecode=partnum:8300
-for (( partition=2; partition&lt;=7; partition++ ))
-do
-    sector=$(sgdisk /dev/sda --first-aligned-in-largest)
-    sgdisk /dev/sda --new=$partition:$sector:+16G --typecode=partnum:8300
-done
-sgdisk /dev/sda --largest-new=8
-</code></pre><p>(source /dev/sdX)
-(destination /mnt)
-<code>pv -tpreb /dev/sdX | dd of=/mnt/file.img</code></p>
-<p>image push:
-      (source /mnt)
-      (destination /dev/sdX)
-      (pv -tpreb /mnt/file.img | dd of=/dev/sdX bs=4096 conv=notrunc,noerror,sync)
-      (sgdisk /dev/sdX --randomize-guids)
-     count:
-    (parted /dev/sdb print | grep . | tail -n 1 | sed &#39;s/^ *//&#39; | cut -d&#39; &#39; -f1)
-    foreach:(tune2fs /dev/sd[XY] -U random)</p>
-<p>image sync:</p>
-<p>image resize:</p>
-<p>image flag:
-      (resize?)
-      (sync?)</p>
+<pre><code>This block represents a series of BASH commands.
+
+All code can be run using the variable table located above it. Should any manual steps be required
+    They will be spelt out in an indented subsection
+</code></pre><p><code>This block represents a single BASH command</code> # Variables may need to be specified</p>
+<p>All blocks have been tested at a command line, but some issues may arise if they are run in a script and then the script is run. Please report any issues and fixes so that all code will run in a script.</p>
+<p>Exercises might be included at the bottom of an ICA. Solutions should be automated where possible, and clearly marked what needs to be done manually so they can be improved.</p>
+<h4 id="exercises">Exercises</h4>
+<ul>
+<li>Create a submission box for exercises</li>
+<li>Create Live CD builder</li>
+</ul>
 
                     
                     </section>
@@ -184,7 +232,7 @@ sgdisk /dev/sda --largest-new=8
 
         
         
-        <a href="./Chapter 1.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="./Chapter 1.html" class="navigation navigation-next navigation-unique"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

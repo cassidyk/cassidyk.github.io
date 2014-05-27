@@ -7,8 +7,8 @@
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
-        <meta name="author" content="cassidyk">
-        <meta name="description" content="This book will be structured as a series of ICA&#39;s which will help you create a sandbox to play in. It is written with the assumption you will be running as root from an Archlinux Live CD.">
+        <meta name="author" content="">
+        <meta name="description" content="This book is structured as a series of assignments which will guide exploritory system building. This will be accomplished by first creating an enviroment in which to build and then outling the use of a few building blocks.">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
@@ -22,7 +22,7 @@
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
 
-        <meta property="book:author" content="https://github.com/cassidyk">
+        <meta property="book:author" content="https://github.com/">
         <meta property="book:tag" content="GitBook">
 
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -40,11 +40,11 @@
 
 
         
-    <div class="book" data-github="cassidyk/whatcomesbeforealpha" data-level="0" data-basepath="." data-revision="1401075557803">
+    <div class="book"  data-level="0" data-basepath="." data-revision="1401165507033">
     <div class="book-header">
     <!-- Actions Left -->
     
-    <a href="https://github.com/cassidyk/whatcomesbeforealpha" target="_blank" class="btn pull-left"><i class="fa fa-bookmark-o"></i></a>
+    <a href="https://github.com/null" target="_blank" class="btn pull-left"><i class="fa fa-bookmark-o"></i></a>
     
     <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
@@ -88,9 +88,6 @@
     
 
     
-    <a href="https://github.com/cassidyk/whatcomesbeforealpha/stargazers" target="_blank" class="btn pull-right count-star hidden-xs"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
-    <a href="https://github.com/cassidyk/whatcomesbeforealpha/watchers" target="_blank" class="btn pull-right count-watch hidden-xs"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
-    
 
     <!-- Title -->
     <h1>
@@ -105,25 +102,19 @@
     </div>
     <ul class="summary">
         
+
+        
         <li>
-            <a href="https://github.com/cassidyk" target="blank">About the author</a>
+            <a href="https://github.com/null/issues" target="blank">Questions and Issues</a>
         </li>
         
 
         
         <li>
-            <a href="https://github.com/cassidyk/whatcomesbeforealpha/issues" target="blank">Questions and Issues</a>
+            <a href="https://github.com/null/edit/master/README.md" target="blank">Edit and Contribute</a>
         </li>
         
 
-        
-        <li>
-            <a href="https://github.com/cassidyk/whatcomesbeforealpha/edit/master/README.md" target="blank">Edit and Contribute</a>
-        </li>
-        
-
-        
-        <li class="divider"></li>
         
 
         <li data-level="0" data-path="index.html">
@@ -145,6 +136,18 @@
                     <i class="fa fa-check"></i> <b>2.</b> Chapter 2
                 </a>
                 
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="/the_partition_table.html">
+                            
+                            <a href=".//the_partition_table.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> The Partition Table
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
                 
             </li>
         
@@ -187,11 +190,13 @@
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./Chapter 1.html" title="Chapter 1" class="chapter  new-chapter" data-progress="1" style="left: 25%;"></a>
+        <a href="./Chapter 1.html" title="Chapter 1" class="chapter  new-chapter" data-progress="1" style="left: 20%;"></a>
     
-        <a href="./Chapter 2.html" title="Chapter 2" class="chapter  new-chapter" data-progress="2" style="left: 50%;"></a>
+        <a href="./Chapter 2.html" title="Chapter 2" class="chapter  new-chapter" data-progress="2" style="left: 40%;"></a>
     
-        <a href="./Chapter 3.html" title="Chapter 3" class="chapter  new-chapter" data-progress="3" style="left: 75%;"></a>
+        <a href=".//the_partition_table.html" title="The Partition Table" class="chapter  " data-progress="2.1" style="left: 60%;"></a>
+    
+        <a href="./Chapter 3.html" title="Chapter 3" class="chapter  new-chapter" data-progress="3" style="left: 80%;"></a>
     
         <a href="./Arch Install Script.html" title="Script: Arch Install" class="chapter  new-chapter" data-progress="4" style="left: 100%;"></a>
     
@@ -200,30 +205,35 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_3001">
                     
                         <h1 id="version-0-1">Version 0.1</h1>
-<p>This book will be structured as a series of ICA&#39;s which will help you create a sandbox to play in. It is written with the assumption you will be running as root from an Archlinux Live CD.</p>
-<p>ICA&#39;s will be cumulative in the sense that previous ICA configurations may need to be completed first.</p>
-<p>Layout of the assignments is still in Beta so feedback is appreciated.</p>
+<p>This book is structured as a series of assignments which will guide exploritory system building. This will be accomplished by first creating an enviroment in which to build and then outling the use of a few building blocks.</p>
+<p>An assignment may end with some exercises to complete which will extend your toolkit for building new systems. Exercises should be completed in similar form as assignments for easy import into scripts. Any manual tasks should be clearly marked for future iterations.</p>
+<p>Assignments are written for BASH running within an Archlinux LiveCD.</p>
+<h4 id="assignment-format">Assignment Format</h4>
 <table>
 <thead>
 <tr>
-<th>Shell Variables</th>
+<th>BASH Code</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Variables are assigned here. Copy and paste into your script</td>
+<td>This table includes variable code. It is to be copied into your script and modified as needed</td>
 </tr>
 </tbody>
 </table>
-<pre><code>This is a script that will run with the values set above
-</code></pre><p>Values have been tested to work at the command line, but there may be some issues if they are copied into a script and then the script is run. Please report any issues you encounter as eventually everything will need to run from a script.</p>
+<pre><code>This block represents a series of BASH commands.
+
+All code can be run using the variable table located above it. Should any manual steps be required
+    They will be spelt out in an indented subsection
+</code></pre><p><code>This block represents a single BASH command</code> # Variables may need to be specified</p>
+<p>All blocks have been tested at a command line, but some issues may arise if they are run in a script and then the script is run. Please report any issues and fixes so that all code will run in a script.</p>
 <p>Exercises might be included at the bottom of an ICA. Solutions should be automated where possible, and clearly marked what needs to be done manually so they can be improved.</p>
-<h3 id="exercises">Exercises</h3>
+<h4 id="exercises">Exercises</h4>
 <ul>
-<li>Create a submission box for scripts</li>
+<li>Create a submission box for exercises</li>
 <li>Create Live CD builder</li>
 </ul>
 

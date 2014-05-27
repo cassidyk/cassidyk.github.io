@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Chapter 2 | Version 0.1</title>
+        <title>Script: Arch Install | Version 0.1</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,11 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href=".//the_partition_table.html" />
         
-        
-        <link rel="prev" href="./Chapter 1.html" />
+        <link rel="prev" href="./Chapter 3.html" />
         
 
-        <meta property="og:title" content="Chapter 2 | Version 0.1">
+        <meta property="og:title" content="Script: Arch Install | Version 0.1">
         <meta property="og:site_name" content="Version 0.1">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +40,7 @@
 
 
         
-    <div class="book"  data-level="2" data-basepath="." data-revision="1401165507033">
+    <div class="book"  data-level="4" data-basepath="." data-revision="1401084237902">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -113,7 +111,7 @@
 
         
         <li>
-            <a href="https://github.com/null/edit/master/Chapter 2.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/null/edit/master/Arch Install Script.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -138,18 +136,6 @@
                     <i class="fa fa-check"></i> <b>2.</b> Chapter 2
                 </a>
                 
-                
-                <ul class="articles">
-                    
-                        <li  data-level="2.1" data-path="/the_partition_table.html">
-                            
-                            <a href=".//the_partition_table.html">
-                                <i class="fa fa-check"></i> <b>2.1.</b> The Partition Table
-                            </a>
-                            
-                        </li>
-                    
-                </ul>
                 
             </li>
         
@@ -186,112 +172,96 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 40%;min-width: 20%;"></div>
+        <div class="inner" style="width: 100%;min-width: 75%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./Chapter 1.html" title="Chapter 1" class="chapter done new-chapter" data-progress="1" style="left: 20%;"></a>
+        <a href="./Chapter 1.html" title="Chapter 1" class="chapter done new-chapter" data-progress="1" style="left: 25%;"></a>
     
-        <a href="./Chapter 2.html" title="Chapter 2" class="chapter done new-chapter" data-progress="2" style="left: 40%;"></a>
+        <a href="./Chapter 2.html" title="Chapter 2" class="chapter done new-chapter" data-progress="2" style="left: 50%;"></a>
     
-        <a href=".//the_partition_table.html" title="The Partition Table" class="chapter  " data-progress="2.1" style="left: 60%;"></a>
+        <a href="./Chapter 3.html" title="Chapter 3" class="chapter done new-chapter" data-progress="3" style="left: 75%;"></a>
     
-        <a href="./Chapter 3.html" title="Chapter 3" class="chapter  new-chapter" data-progress="3" style="left: 80%;"></a>
-    
-        <a href="./Arch Install Script.html" title="Script: Arch Install" class="chapter  new-chapter" data-progress="4" style="left: 100%;"></a>
+        <a href="./Arch Install Script.html" title="Script: Arch Install" class="chapter done new-chapter" data-progress="4" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2999">
+                    <section class="normal" id="section-gitbook_2423">
                     
-                        <h1 id="images">Images</h1>
-<h2 id="assignment-2">Assignment 2</h2>
-<h3 id="using-dd-with-partitions">Using DD with partitions</h3>
-<h4 id="prep">Prep</h4>
-<table>
-<thead>
-<tr>
-<th>To Do</th>
-<th>Configuration</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Partition</td>
-<td><code>sgdisk /dev/sdb --largest-new=1</code></td>
-</tr>
-<tr>
-<td>Filesystem</td>
-<td><code>mkfs.ext4 /dev/sdb1</code></td>
-</tr>
-<tr>
-<td>Mount</td>
-<td><code>mount /dev/sdb1 /mnt</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="the-image-file">The image file</h4>
-<table>
-<thead>
-<tr>
-<th>BASH Code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td># Variables</td>
-</tr>
-<tr>
-<td>X=&#39;a&#39;</td>
-</tr>
-<tr>
-<td>device=&quot;/dev/sd$X&quot;</td>
-</tr>
-<tr>
-<td>file=&quot;/mnt/sd$X.img.gz&quot;</td>
-</tr>
-<tr>
-<td># Functions</td>
-</tr>
-<tr>
-<td>count=&quot;parted -ms $device print &#124; tail -n+3 &#124; grep . -c&quot;</td>
-</tr>
-</tbody>
-</table>
-<pre><code>#!/bin/bash
-
-# pulling the image
-dd if=$device bs=4096 conv=notrunc,noerror,sync | pv | gzip -c -9 &gt; $file
-
-# pushing the image
-gunzip -c $file | pv | dd of=$device bs=4096 conv=noerror,sync
-
-
-# correct duplicate GUIDs as reported by lsblk
-count=`eval $count`
-sgdisk $device --randomize-guids
-for (( partition=1; partition&lt;=$count; partition++ ))
-do
-    tune2fs $device$partition -U random
-done
-</code></pre><h4 id="notes">Notes</h4>
-<pre><code>lsblk -f # List block devices
-
-genfstab -U -p /mnt &gt; /mnt/etc/fstab # Overwrite fstab with new GUID
-</code></pre><h3 id="exercises">Exercises</h3>
+                        <h1 id="script-install-arch">Script: Install Arch</h1>
+<h2 id="success-not-guaranteed">Success Not Guaranteed</h2>
+<p>Before completing please read up on some trouble areas</p>
 <ul>
-<li><a href="https://wiki.archlinux.org/index.php/Beginners%27_guide" target="_blank"> Install Arch to /dev/sda1 </a></li>
-<li>Create an image file of /dev/sda1</li>
-<li>Restore the image file to another partition.</li>
-<li>Modify /etc/fstab only for devices where the GUID was changed</li>
-<li>Split a partition in half/join two partitions together</li>
+<li><a href="https://wiki.archlinux.org/index.php/Beginners%27_guide#Choose_a_partition_table_type" target="_blank"> Choosing a partition type </a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Partitioning#Choosing_between_GPT_and_MBR" target="_blank"> GPT versus MBR </a></li>
+<li><a href="https://wiki.archlinux.org/index.php/GUID_Partition_Table#BIOS_systems" target="_blank"> BIOS with GPT </a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Unified_Extensible_Firmware_Interface#EFI_System_Partition" target="_blank"> EFI with GPT </a></li>
 </ul>
+<h2 id="single-partition-setup">Single partition setup</h2>
+<pre><code>setfont Lat2-Terminus16
+sed -i &#39;s/#en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/&#39; /etc/locale.gen
+sed -i &#39;s/en_US.UTF-8 UTF-8/#en_US.UTF-8 UTF-8/&#39; /etc/locale.gen
+locale-gen
+export LANG=en_CA.UTF-8
 
+mount /dev/sda1 /mnt
+
+pacstrap -i /mnt base
+
+genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+nano /mnt/etc/fstab # confirm it is correct
+
+arch-chroot /mnt /bin/bash
+</code></pre><h2 id="multi-partition-setup">Multi partition setup</h2>
+<pre><code>setfont Lat2-Terminus16
+sed -i &#39;s/#en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/&#39; /etc/locale.gen
+sed -i &#39;s/en_US.UTF-8 UTF-8/#en_US.UTF-8 UTF-8/&#39; /etc/locale.gen
+locale-gen
+export LANG=en_CA.UTF-8
+
+cgdisk /dev/sda # if partitions not created
+
+mkswap /dev/sda1
+swapon /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda3
+mount /dev/sda2 /mnt
+mkdir /mnt/home
+mount /dev/sda3 /mnt/home
+
+pacstrap -i /mnt base
+
+genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+nano /mnt/etc/fstab # confirm it is correct
+
+arch-chroot /mnt /bin/bash
+</code></pre><h2 id="continue-from-arch-chroot">Continue from arch-chroot</h2>
+<pre><code>sed -i &#39;s/#en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/&#39; /etc/locale.gen
+locale-gen
+echo LANG=en_CA.UTF-8 &gt; /etc/locale.conf
+export LANG=en_CA.UTF-8
+
+setfont Lat2-Terminus16
+echo FONT=Lat2-Terminus16 &gt; /etc/vconsole.conf
+
+ln -s /usr/share/zoneinfo/Canada/Mountain /etc/localtime
+hwclock --systohc --utc
+
+echo Arch &gt; /etc/hostname   # set hostname
+systemctl enable dhcpcd.service
+passwd root # set root login
+
+pacman -S grub
+
+grub-install --target=i386-pc --recheck --force /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
+</code></pre>
                     
                     </section>
                 
@@ -300,10 +270,8 @@ genfstab -U -p /mnt &gt; /mnt/etc/fstab # Overwrite fstab with new GUID
         </div>
 
         
-        <a href="./Chapter 1.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./Chapter 3.html" class="navigation navigation-prev navigation-unique"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href=".//the_partition_table.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
